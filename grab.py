@@ -9,8 +9,6 @@ def necromancy():
         sys.exit()
 
 def grab(node, reserved):
-    #determine if node is available
-    
     mem = subprocess.check_output(['nvidia-smi', '--query-gpu=memory.free', '--id=' + str(node), '--format=csv,nounits,noheader']).decode('utf-8')
     x = torch.rand((256,1024,int(int(mem)*(reserved/100)))).cuda(node)
 
